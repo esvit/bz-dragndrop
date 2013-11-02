@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../bower_components/angular/angular.min.js"></script>
+    <script src="../bower_components/bz-data/bz-data.js"></script>
+    <script src="../bz-dragndrop.src.js"></script>
+
+    <style>.bin, .item {
+        font-size: 32px;
+        text-align: center;
+        margin: 0 5px;
+    }
+
+    .bin {
+        min-height: 150px;
+        min-width: 150px;
+        float: left;
+        border: 1px solid red;
+        padding: 20px;
+    }
+
+    .item {
+        min-height: 150px;
+        min-width: 150px;
+        background: blue;
+        float: right;
+        transition: all 0.2s ease;
+    }
+
+    .drag {
+        opacity: 0.5;
+    }
+
+    .over {
+        background: red;
+    }</style>
+</head>
+<body ng-app="dragDrop" ng-controller="DragDropCtrl">
+
+    <div class="bin" bz-droppable drop="addNewItem($data)">
+        <div>Drag on me</div>
+        <div class="items">
+            <div ng-repeat="item in items">{{ item.title }}</div>
+        </div>
+    </div>
+    <div class="item" bz-draggable bz-data="item">Drag me</div>
+
+    <script>
+        var app = angular.module('dragDrop', ['bzDragndrop']);
+        app.controller('DragDropCtrl', function ($scope) {
+            $scope.items = [];
+            $scope.item = 'New item';
+
+            $scope.addNewItem = function (data) {
+                $scope.items.push({ title: data });
+            };
+
+            $scope.validateNewItem = function (data) {
+                return angular.isString(data);
+            };
+        });
+    </script>
+</body>
+</html>
