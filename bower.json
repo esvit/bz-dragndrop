@@ -1,0 +1,15 @@
+{
+  "name": "bz-dragndrop",
+  "version": "0.1.0",
+  "main": [
+    "bz-dragndrop.js"
+  ],
+  "ignore": [
+    "examples",
+    "src"
+  ],
+  "dependencies": {
+    "angular": ">=1.2.0-rc.2",
+    "bz-data": "*"
+  }
+}
